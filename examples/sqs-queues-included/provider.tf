@@ -11,13 +11,13 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.region
-  profile = var.profile
+  region  = local.region
+  profile = local.profile
 
   default_tags {
     tags = {
-      Project = var.project
-      Repo    = var.repo
+      Project = local.project
+      Repo    = local.repo
     }
   }
 }

@@ -1,5 +1,6 @@
-local {
+locals {
   sqs_is_event_source = var.sqs_queue_name == null && var.sqs_queue_arn == null ? false : true
+  sqs_use_module      = local.sqs_is_event_source == true && var.sqs_queue_name != null ? true : false
 }
 
 ##  -----  Function  -----  ##
@@ -51,19 +52,18 @@ resource "aws_lambda_function" "this" {
 }
 
 ##  -----  Queues   -----  ##
-
 resource "aws_lambda_event_source_mapping" "this" {
-  count                              = var.sqs_is_event_source == true ? 1 : 0
-  event_source_arn                   = var.sqs_queue_arn == null ? module.queues.queue_arn : var.sqs_queue_arn
+  count                              = local.sqs_is_event_source == true ? 1 : 0
+  event_source_arn                   = local.sqs_use_module ? module.queues[0].queue_arn : var.sqs_queue_arn
   function_name                      = aws_lambda_function.this.function_name
   batch_size                         = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
 }
 
 module "queues" {
-  source = "modules/sqs"
+  source = "./modules/sqs"
 
-  count                      = var.sqs_is_event_source == true ? 1 : 0
+  count                      = local.sqs_use_module ? 1 : 0
   name                       = var.sqs_queue_name
   max_message_size           = var.sqs_max_message_size
   message_retention_seconds  = var.sqs_message_retention_seconds

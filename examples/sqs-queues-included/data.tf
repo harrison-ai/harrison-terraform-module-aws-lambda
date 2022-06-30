@@ -1,8 +1,18 @@
 data "aws_iam_policy_document" "lambda_policy" {
   statement {
-    sid       = "example"
+    sid    = "1"
+    effect = "Allow"
+    actions = [
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    sid       = "2"
     effect    = "Allow"
-    actions   = "s3:GetBucketLocation"
-    resources = "*"
+    actions   = [ "s3:GetBucketLocation" ]
+    resources = [ "*" ]
   }
 }
+

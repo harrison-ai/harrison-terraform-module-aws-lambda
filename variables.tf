@@ -30,10 +30,6 @@ variable "timeout" {
   type = string
 }
 
-variable "event_source_arn" {
-  type = string
-}
-
 variable "batch_size" {
   type    = number
   default = 10
