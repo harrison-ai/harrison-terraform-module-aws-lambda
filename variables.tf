@@ -108,8 +108,8 @@ variable "sqs_visibility_timeout_seconds" {
 }
 
 variable "sqs_encryption" {
-  type    = string
-  default = null
+  type    = bool
+  default = true
 }
 
 variable "sqs_max_receive_count" {

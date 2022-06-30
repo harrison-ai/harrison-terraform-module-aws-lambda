@@ -23,8 +23,8 @@ variable "visibility_timeout_seconds" {
 }
 
 variable "encryption" {
-  type    = string
-  default = null
+  type    = bool
+  default = true
 }
 
 variable "max_receive_count" {
