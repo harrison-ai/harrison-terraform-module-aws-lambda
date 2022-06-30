@@ -11,8 +11,8 @@ data "aws_iam_policy_document" "lambda_policy" {
   statement {
     sid       = "2"
     effect    = "Allow"
-    actions   = [ "s3:GetBucketLocation" ]
-    resources = [ "*" ]
+    actions   = ["s3:GetBucketLocation"]
+    resources = ["*"]
   }
 }
 
