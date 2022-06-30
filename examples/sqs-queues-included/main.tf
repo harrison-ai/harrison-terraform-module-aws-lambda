@@ -27,8 +27,17 @@ module "lambda_function" {
   iam_abac_tags = {
     Project = local.project
   }
-}
 
-module "sqs" {
-  source = "../modules/sqs"
+  # Optional event source SQS queue to create or existing SQS queue arn to attach
+  sqs_queue_name                 = "${local.project}-queue-${local.env_name}"
+  # sqs_queue_arn                = "..."
+
+  # Optional params when opting for creating a new queue
+  sqs_max_message_size           = 262144
+  sqs_message_retention_seconds  = 1209600
+  sqs_receive_wait_time_seconds  = 20
+  sqs_visibility_timeout_seconds = 300
+  sqs_encryption                 = null
+  sqs_max_receive_count          = 10
+
 }

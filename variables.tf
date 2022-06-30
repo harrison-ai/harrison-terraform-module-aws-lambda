@@ -1,10 +1,4 @@
-# variable "env_name" {
-#   type = string
-# }
-
-# variable "project" {
-#   type = string
-# }
+##  -----  Lambda Variables  -----  ##
 
 variable "name" {
   type = string
@@ -83,4 +77,46 @@ variable "tracing_mode" {
 variable "iam_abac_tags" {
   type    = map(string)
   default = {}
+}
+
+##  -----  SQS Variables  -----  ##
+
+variable "sqs_queue_arn" {
+  type    = string
+  default = null
+}
+
+variable "sqs_queue_name" {
+  type    = string
+  default = null
+}
+
+variable "sqs_max_message_size" {
+  type    = number
+  default = 262144
+}
+
+variable "sqs_message_retention_seconds" {
+  type    = number
+  default = 1209600
+}
+
+variable "sqs_receive_wait_time_seconds" {
+  type    = number
+  default = 20
+}
+
+variable "sqs_visibility_timeout_seconds" {
+  type    = number
+  default = 300
+}
+
+variable "sqs_encryption" {
+  type    = string
+  default = null
+}
+
+variable "sqs_max_receive_count" {
+  type    = number
+  default = 10
 }
