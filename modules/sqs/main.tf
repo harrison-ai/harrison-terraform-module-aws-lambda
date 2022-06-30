@@ -13,7 +13,7 @@ resource "aws_sqs_queue" "this" {
     deadLetterTargetArn = aws_sqs_queue.dlq.arn
     maxReceiveCount     = var.max_receive_count
   })
-  sqs_managed_sse_enabled    = var.encryption_enabled
+  sqs_managed_sse_enabled = var.encryption_enabled
 
   tags = {
     Name = local.default_name
