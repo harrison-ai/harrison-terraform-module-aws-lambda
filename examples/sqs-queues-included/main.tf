@@ -12,7 +12,10 @@ resource "aws_ecr_repository" "this" {
   }
 }
 
-# Sample Lambda function using the module
+
+
+#  Example where SQS queues are deployed with the Lambda function
+
 module "lambda_function" {
   source = "../../"
 
@@ -29,6 +32,9 @@ module "lambda_function" {
   batch_size                         = 1
   maximum_batching_window_in_seconds = 30
   cloudwatch_retention_in_days       = 7
+  
+  event_source_arn = module.queues.queue_arn
+  
   envvars = {
     FOO = "bar"
   }
@@ -39,18 +45,54 @@ module "lambda_function" {
     Project = local.project
   }
 
-  # Optional event source SQS queue to create
-  sqs_queue_name = "${local.project}-queue-${local.env_name}"
+}
 
-  # Optional event source SQS queue that already exists
-  # sqs_queue_arn                = "..."
+module "queues" {
+  source = "../../modules/sqs"
 
-  # Optional params for new queue:
-  sqs_max_message_size           = 262144
-  sqs_message_retention_seconds  = 1209600
-  sqs_receive_wait_time_seconds  = 20
-  sqs_visibility_timeout_seconds = 300
-  sqs_encryption                 = null
-  sqs_max_receive_count          = 10
+  name = "${local.project}-function-${local.env_name}"
+  #  add remaining attributes
+}
+
+#  End example where SQS queues are deployed with the Lambda function
+
+
+
+#  Example where SQS queues pre-exist
+
+module "lambda_function" {
+  source = "../../"
+
+  depends_on    = [aws_ecr_repository.this]
+  architectures = ["x86_64"]
+  name          = "${local.project}-function-${local.env_name}"
+  description   = "Example Lambda Function"
+  image_uri     = "${aws_ecr_repository.this.repository_url}:latest"
+  memory_size   = 128
+  timeout       = 10
+  #  Optional params
+  entry_point                        = ["/lambda-entrypoint.sh"]
+  command                            = ["app.handler"]
+  batch_size                         = 1
+  maximum_batching_window_in_seconds = 30
+  cloudwatch_retention_in_days       = 7
+  
+  event_source_arn = data.aws_sqs_queue.selected.arn
+  
+  envvars = {
+    FOO = "bar"
+  }
+  lambda_policy          = data.aws_iam_policy_document.lambda_policy.json
+  ephemeral_storage_size = 512
+  tracing_mode           = "Active"
+  iam_abac_tags = {
+    Project = local.project
+  }
 
 }
+
+data "aws_sqs_queue" "selected" {
+  name = "foo"
+}
+
+#  End example where SQS queues pre-exist
