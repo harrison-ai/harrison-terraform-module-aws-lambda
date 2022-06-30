@@ -69,7 +69,7 @@ module "queues" {
   message_retention_seconds  = var.sqs_message_retention_seconds
   receive_wait_time_seconds  = var.sqs_receive_wait_time_seconds
   visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
-  encryption                 = var.sqs_encryption
+  encryption_enabled         = var.sqs_encryption_enabled
   max_receive_count          = var.sqs_max_receive_count
 }
 

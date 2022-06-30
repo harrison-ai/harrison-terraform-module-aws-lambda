@@ -22,7 +22,7 @@ variable "visibility_timeout_seconds" {
   default = 300
 }
 
-variable "encryption" {
+variable "encryption_enabled" {
   type    = bool
   default = true
 }

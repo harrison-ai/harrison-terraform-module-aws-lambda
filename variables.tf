@@ -107,7 +107,7 @@ variable "sqs_visibility_timeout_seconds" {
   default = 300
 }
 
-variable "sqs_encryption" {
+variable "sqs_encryption_enabled" {
   type    = bool
   default = true
 }
