@@ -14,7 +14,7 @@ resource "aws_ecr_repository" "this" {
 
 # Sample Lambda function using the module
 module "lambda_function" {
-  source = "../../"
+  source = "git@github.com:harrison-ai/harrison-terraform-module-aws-lambda.git"
 
   depends_on    = [aws_ecr_repository.this]
   architectures = ["x86_64"]
