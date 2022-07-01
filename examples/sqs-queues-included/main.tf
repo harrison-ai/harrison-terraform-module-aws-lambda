@@ -50,7 +50,7 @@ module "lambda_function" {
   sqs_message_retention_seconds  = 1209600
   sqs_receive_wait_time_seconds  = 20
   sqs_visibility_timeout_seconds = 300
-  sqs_encryption                 = null
+  sqs_encryption_enabled         = true
   sqs_max_receive_count          = 10
 
 }
