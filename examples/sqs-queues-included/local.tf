@@ -2,6 +2,6 @@ locals {
   project  = "foo"
   env_name = "prod"
   repo     = "foo"
-  profile  = "personal"
+  profile  = "foo"
   region   = "ap-southeast-2"
 }
