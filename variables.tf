@@ -75,7 +75,7 @@ variable "architectures" {
 variable "ephemeral_storage_size" {
   description = "Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB)."
   type        = number
-  default     = 412
+  default     = 512
 }
 
 variable "tracing_mode" {
@@ -111,19 +111,19 @@ variable "sqs_max_message_size" {
 }
 
 variable "sqs_message_retention_seconds" {
-  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). The default for this attribute is 345600 (4 days)"
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)."
   type        = number
   default     = 1209600
 }
 
 variable "sqs_receive_wait_time_seconds" {
-  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). The default for this attribute is 0, meaning that the call will return immediately."
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)."
   type        = number
   default     = 20
 }
 
 variable "sqs_visibility_timeout_seconds" {
-  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). The default for this attribute is 30."
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)."
   type        = number
   default     = 300
 }
