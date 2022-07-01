@@ -16,7 +16,7 @@ variable "image_uri" {
 }
 
 variable "entry_point" {
-  description = "Entrypoint of LAmbda. This is equivalent to Docker ENTRYPOINT."
+  description = "Entrypoint of Lambda. This is equivalent to Docker ENTRYPOINT."
   type        = list(string)
   default     = null
 }
@@ -38,7 +38,7 @@ variable "timeout" {
 }
 
 variable "batch_size" {
-  description = "he largest number of records that Lambda will retrieve from the queue at the time of invocation. Defaults to 10 for SQS."
+  description = "The largest number of records that Lambda will retrieve from the queue at the time of invocation. Defaults to 10 for SQS."
   type        = number
   default     = 10
 }
