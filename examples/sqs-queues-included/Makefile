@@ -49,8 +49,7 @@ apply: .env
 
 ## validate: 		terraform validate across all environments
 validate:
-	docker-compose run --rm --workdir /app terraform init -backend=false
-	docker-compose run --rm --workdir /app terraform validate -json
+	./scripts/tf-validate.sh
 
 ## destroy:		terraform destroy
 destroy: .env
