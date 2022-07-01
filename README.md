@@ -76,10 +76,10 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_dl_queue_arn"></a> [dl\_queue\_arn](#output\_dl\_queue\_arn) | n/a |
-| <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | n/a |
-| <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | n/a |
-| <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | n/a |
+| <a name="output_dl_queue_arn"></a> [dl\_queue\_arn](#output\_dl\_queue\_arn) | Dead letter queue ARN |
+| <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | Dead Letter queue URL |
+| <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue ARN |
+| <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue URL |
 
 
 ## Who do I talk to?
