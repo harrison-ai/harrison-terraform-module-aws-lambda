@@ -69,7 +69,7 @@ resource "aws_sqs_queue" "queue" {
   visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dlqueue[0].arn
-    maxReceiveCount     = var.sqs_dlq_max_receive_count
+    maxReceiveCount     = var.sqs_max_receive_count
   })
   sqs_managed_sse_enabled = var.sqs_encryption_enabled
 

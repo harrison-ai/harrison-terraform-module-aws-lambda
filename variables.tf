@@ -134,8 +134,8 @@ variable "sqs_encryption_enabled" {
   default     = false
 }
 
-variable "sqs_dlq_max_receive_count" {
-  description = "Max receive count for the dead letter queue."
+variable "sqs_max_receive_count" {
+  description = "The number of times a message is delivered to the source queue before being moved to the dead letter queue."
   type        = number
   default     = 10
 }
