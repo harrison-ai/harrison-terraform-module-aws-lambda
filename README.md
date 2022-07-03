@@ -62,9 +62,9 @@ No modules.
 | <a name="input_maximum_batching_window_in_seconds"></a> [maximum\_batching\_window\_in\_seconds](#input\_maximum\_batching\_window\_in\_seconds) | The maximum amount of time to gather records before invoking the function, in seconds (between 0 and 300). Records will continue to accumulate until either maximum\_batching\_window\_in\_seconds expires or batch\_size has been met. | `number` | `30` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Memory size of the lambda in megabytes. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name of the Lambda. | `string` | n/a | yes |
-| <a name="input_sqs_dlq_max_receive_count"></a> [sqs\_dlq\_max\_receive\_count](#input\_sqs\_dlq\_max\_receive\_count) | The number of times a message is delivered to the source queue before being moved to the dead letter queue. | `number` | `10` | no |
 | <a name="input_sqs_encryption_enabled"></a> [sqs\_encryption\_enabled](#input\_sqs\_encryption\_enabled) | Boolean to enable server-side encryption (SSE) of message content with SQS-owned encryption keys. | `bool` | `false` | no |
 | <a name="input_sqs_max_message_size"></a> [sqs\_max\_message\_size](#input\_sqs\_max\_message\_size) | The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). The default for this attribute is 262144 (256 KiB) | `number` | `262144` | no |
+| <a name="input_sqs_max_receive_count"></a> [sqs\_max\_receive\_count](#input\_sqs\_max\_receive\_count) | The number of times a message is delivered to the source queue before being moved to the dead letter queue. | `number` | `10` | no |
 | <a name="input_sqs_message_retention_seconds"></a> [sqs\_message\_retention\_seconds](#input\_sqs\_message\_retention\_seconds) | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). | `number` | `1209600` | no |
 | <a name="input_sqs_queue_arn"></a> [sqs\_queue\_arn](#input\_sqs\_queue\_arn) | ARN of an existing SQS event source queue. | `string` | `null` | no |
 | <a name="input_sqs_queue_name"></a> [sqs\_queue\_name](#input\_sqs\_queue\_name) | Name of the event source queue if you want this module to create a combination queue and dead letter queue. | `string` | `null` | no |
@@ -81,7 +81,6 @@ No modules.
 | <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | Dead letter queue url. |
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue arn. |
 | <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue url. |
-
 
 ## Who do I talk to?
 
