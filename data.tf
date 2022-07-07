@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
   }
 }
 
-data "aws_iam_policy_document" "lambda_sqs_default" {
+data "aws_iam_policy_document" "lambda_default" {
   count = local.sqs_use_module ? 1 : 0
 
   statement {
@@ -39,7 +39,7 @@ data "aws_iam_policy_document" "lambda_sqs_default" {
 
 data "aws_iam_policy_document" "lambda_combined" {
   source_policy_documents = local.sqs_use_module ? [
-    data.aws_iam_policy_document.lambda_sqs_default[0].json,
+    data.aws_iam_policy_document.lambda_default[0].json,
     var.lambda_policy
     ] : [
     var.lambda_policy
