@@ -53,8 +53,8 @@ resource "aws_lambda_function" "this" {
 
 ##  -----  Queues   -----  ##
 resource "aws_lambda_event_source_mapping" "this" {
-  count                              = local.sqs_is_event_source == true ? 1 : 0
-  
+  count = local.sqs_is_event_source == true ? 1 : 0
+
   event_source_arn                   = local.sqs_use_module ? aws_sqs_queue.queue[0].arn : var.sqs_queue_arn
   function_name                      = aws_lambda_function.this.function_name
   batch_size                         = var.batch_size
@@ -62,7 +62,7 @@ resource "aws_lambda_event_source_mapping" "this" {
 }
 
 resource "aws_sqs_queue" "queue" {
-  count                      = local.sqs_use_module ? 1 : 0
+  count = local.sqs_use_module ? 1 : 0
 
   name                       = var.sqs_queue_name
   max_message_size           = var.sqs_max_message_size
@@ -81,7 +81,7 @@ resource "aws_sqs_queue" "queue" {
 }
 
 resource "aws_sqs_queue" "dlqueue" {
-  count                      = local.sqs_use_module ? 1 : 0
+  count = local.sqs_use_module ? 1 : 0
 
   name                       = "${var.sqs_queue_name}-dl"
   max_message_size           = var.sqs_max_message_size
@@ -96,14 +96,14 @@ resource "aws_sqs_queue" "dlqueue" {
 }
 
 resource "aws_sqs_queue_policy" "queue" {
-  count     = local.sqs_use_module ? 1 : 0
+  count = local.sqs_use_module ? 1 : 0
 
   queue_url = aws_sqs_queue.queue[0].id
   policy    = data.aws_iam_policy_document.queue[0].json
 }
 
 resource "aws_sqs_queue_policy" "dlqueue" {
-  count     = local.sqs_use_module ? 1 : 0
+  count = local.sqs_use_module ? 1 : 0
 
   queue_url = aws_sqs_queue.dlqueue[0].id
   policy    = data.aws_iam_policy_document.dlqueue[0].json

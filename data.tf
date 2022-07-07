@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 
 data "aws_iam_policy_document" "lambda_sqs_default" {
   count = local.sqs_use_module ? 1 : 0
-  
+
   statement {
     effect = "Allow"
     actions = [
