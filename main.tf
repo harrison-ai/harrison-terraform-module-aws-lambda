@@ -92,6 +92,18 @@ resource "aws_sqs_queue" "dlqueue" {
   }
 }
 
+resource "aws_sqs_queue_policy" "queue" {
+  count     = local.sqs_use_module ? 1 : 0
+  queue_url = aws_sqs_queue.queue[0].id
+  policy    = data.aws_iam_policy_document.queue[0].json
+}
+
+resource "aws_sqs_queue_policy" "dlqueue" {
+  count     = local.sqs_use_module ? 1 : 0
+  queue_url = aws_sqs_queue.dlqueue[0].id
+  policy    = data.aws_iam_policy_document.dlqueue[0].json
+}
+
 ##  -----  IAM   -----  ##
 resource "aws_iam_role" "this" {
   name               = var.name
@@ -100,26 +112,22 @@ resource "aws_iam_role" "this" {
   tags = merge(var.iam_abac_tags, { Name = var.name })
 }
 
+
 resource "aws_iam_policy" "this" {
 
   name   = var.name
-  policy = var.lambda_policy
+  policy = data.aws_iam_policy_document.lambda_combined.json
 
   tags = {
     Name = var.name
   }
 }
 
-resource "aws_iam_role_policy_attachment" "aws_managed_sqs_execution" {
-  role       = aws_iam_role.this.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
-}
-
-
 resource "aws_iam_role_policy_attachment" "this" {
   role       = aws_iam_role.this.name
   policy_arn = aws_iam_policy.this.arn
 }
+
 
 ##  -----  CloudWatch  -----  ##
 resource "aws_cloudwatch_log_group" "this" {
