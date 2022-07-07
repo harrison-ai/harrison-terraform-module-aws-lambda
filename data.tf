@@ -13,6 +13,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 
 data "aws_iam_policy_document" "lambda_sqs_default" {
   count = local.sqs_use_module ? 1 : 0
+  
   statement {
     effect = "Allow"
     actions = [
@@ -31,7 +32,6 @@ data "aws_iam_policy_document" "lambda_sqs_default" {
 }
 
 data "aws_iam_policy_document" "lambda_combined" {
-
   source_policy_documents = local.sqs_use_module ? [
     data.aws_iam_policy_document.lambda_sqs_default[0].json,
     var.lambda_policy
@@ -42,6 +42,7 @@ data "aws_iam_policy_document" "lambda_combined" {
 
 data "aws_iam_policy_document" "queue" {
   count = local.sqs_use_module ? 1 : 0
+
   statement {
     sid    = "DefaultPolicy"
     effect = "Allow"
@@ -60,6 +61,7 @@ data "aws_iam_policy_document" "queue" {
 
 data "aws_iam_policy_document" "dlqueue" {
   count = local.sqs_use_module ? 1 : 0
+
   statement {
     sid    = "DefaultPolicy"
     effect = "Allow"
