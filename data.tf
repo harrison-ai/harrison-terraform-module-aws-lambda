@@ -20,14 +20,20 @@ data "aws_iam_policy_document" "lambda_sqs_default" {
       "sqs:ReceiveMessage",
       "sqs:DeleteMessage",
       "sqs:GetQueueAttributes",
-      "logs:CreateLogGroup",
-      "logs:CreateLogStream",
-      "logs:PutLogEvents"
     ]
     resources = [
       aws_sqs_queue.queue[0].arn,
       aws_sqs_queue.dlqueue[0].arn
     ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+    resources = ["*"]
   }
 }
 
