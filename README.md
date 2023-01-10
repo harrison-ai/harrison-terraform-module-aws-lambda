@@ -82,13 +82,15 @@ No modules.
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue arn. |
 | <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue url. |
 
-## Who do I talk to?
 
-- Repo owner or admin Carl Hattingh(carl.hattingh@harrison.ai)
-- Harrison.ai Data Engineering team
+## About harrison.ai
 
-## Contributing
+This module is maintained by the Platform team at [harrison.ai](https://harrison.ai).
 
-## Credits
+At [harrison.ai](https://harrison.ai) our mission is to create AI-as-a-medical-device solutions through ventures and ultimately improve the standard of healthcare for 1 million lives every day.
 
-This repository was created using the [harrison-ai terraform cookiecutter] template (https://github.com/harrison-ai/cookiecutter-terraform)
+## License
+
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+Copyright 2022 harrison.ai Pty. Ltd.
