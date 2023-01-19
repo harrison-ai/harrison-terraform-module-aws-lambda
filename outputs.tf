@@ -20,10 +20,10 @@ output "dl_queue_url" {
 
 output "lambda_function_arn" {
   description = "Lambda function arn."
-  value       = one(aws_lambda_function.this.lambda_function_arn)
+  value       = one(aws_lambda_function.this[*].lambda_function_arn)
 }
 
 output "lambda_function_name" {
   description = "Lambda function name."
-  value       = one(aws_lambda_function.this.lambda_function_name)
+  value       = one(aws_lambda_function.this[*].lambda_function_name)
 }
