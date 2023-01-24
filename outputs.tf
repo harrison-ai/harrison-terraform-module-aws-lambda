@@ -18,7 +18,7 @@ output "dl_queue_url" {
   value       = one(aws_sqs_queue.dlqueue[*].url)
 }
 
-output "arn" {
+output "lambda_function_arn" {
   description = "Lambda function arn."
   value       = aws_lambda_function.this.arn
 }

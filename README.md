@@ -81,7 +81,7 @@ No modules.
 | <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | Dead letter queue url. |
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue arn. |
 | <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue url. |
-| <a name="output_lambda_function_arn"></a> [arn](#output\_arn) | Lambda function ARN. |
+| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda function ARN. |
 
 
 ## About harrison.ai
