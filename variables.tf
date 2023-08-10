@@ -90,6 +90,12 @@ variable "iam_abac_tags" {
   default     = {}
 }
 
+variable "reserved_concurrent_executions" {
+  description = "The amount of reserved concurrent executions for this Lambda Function. A value of 0 disables Lambda Function from being triggered and -1 removes any concurrency limitations. Defaults to Unreserved Concurrency Limits -1."
+  type        = number
+  default     = -1
+}
+
 ##  -----  SQS Variables  -----  ##
 
 variable "sqs_queue_arn" {

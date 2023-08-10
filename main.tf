@@ -18,10 +18,11 @@ resource "aws_lambda_function" "this" {
     command     = var.command
     entry_point = var.entry_point
   }
-  image_uri    = var.image_uri
-  memory_size  = var.memory_size
-  package_type = "Image"
-  timeout      = var.timeout
+  image_uri                      = var.image_uri
+  memory_size                    = var.memory_size
+  package_type                   = "Image"
+  timeout                        = var.timeout
+  reserved_concurrent_executions = var.reserved_concurrent_executions
 
   dynamic "environment" {
     for_each = length(keys(var.envvars)) == 0 ? [] : [true]
@@ -46,7 +47,7 @@ resource "aws_lambda_function" "this" {
   depends_on = [aws_cloudwatch_log_group.this]
 
   lifecycle {
-    ignore_changes = [reserved_concurrent_executions]
+    ignore_changes = var.reserved_concurrent_executions == -1 ? [reserved_concurrent_executions] : []
   }
 
 }
