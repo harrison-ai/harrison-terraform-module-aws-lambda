@@ -46,8 +46,12 @@ resource "aws_lambda_function" "this" {
 
   depends_on = [aws_cloudwatch_log_group.this]
 
-  lifecycle {
-    ignore_changes = var.reserved_concurrent_executions == -1 ? [reserved_concurrent_executions] : []
+  dynamic "lifecycle" {
+    for_each = var.reserved_concurrent_executions == -1 ? [true] : []
+
+    content {
+      ignore_changes = [reserved_concurrent_executions]
+    }
   }
 
 }
