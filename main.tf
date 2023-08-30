@@ -1,7 +1,7 @@
 locals {
-  sqs_dlqueue_name = var.sqs_queue_name == null ? null : "${var.sqs_queue_name}-dl"
-  use_sqs_as_event_source = var.use_sqs_as_event_source && ( var.sqs_queue_name != null || var.sqs_queue_arn != null )
-  create_sqs_queues = local.use_sqs_as_event_source && var.sqs_queue_name != null
+  sqs_dlqueue_name        = var.sqs_queue_name == null ? null : "${var.sqs_queue_name}-dl"
+  use_sqs_as_event_source = var.use_sqs_as_event_source && (var.sqs_queue_name != null || var.sqs_queue_arn != null)
+  create_sqs_queues       = local.use_sqs_as_event_source && var.sqs_queue_name != null
 }
 
 ##  -----  Function  -----  ##
