@@ -12,6 +12,7 @@ This module is opinionated, yet flexible enough to be really useful. Here are so
   - KMS Encryption of Environment Variables
   - Layers (by virtue of only supporting Container Image based funcctions)
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -23,7 +24,7 @@ This module is opinionated, yet flexible enough to be really useful. Here are so
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.20.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0 |
 
 ## Modules
 
@@ -72,6 +73,7 @@ No modules.
 | <a name="input_sqs_visibility_timeout_seconds"></a> [sqs\_visibility\_timeout\_seconds](#input\_sqs\_visibility\_timeout\_seconds) | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | `number` | `300` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | Lambda timeout in seconds. | `string` | n/a | yes |
 | <a name="input_tracing_mode"></a> [tracing\_mode](#input\_tracing\_mode) | Whether to to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are PassThrough and Active. If PassThrough, Lambda will only trace the request from an upstream service if it contains a tracing header with 'sampled=1'. If Active, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision. | `string` | `null` | no |
+| <a name="input_use_sqs_as_event_source"></a> [use\_sqs\_as\_event\_source](#input\_use\_sqs\_as\_event\_source) | Boolean to determine if an SQS queue is the event source. | `bool` | `true` | no |
 
 ## Outputs
 
@@ -79,10 +81,10 @@ No modules.
 |------|-------------|
 | <a name="output_dl_queue_arn"></a> [dl\_queue\_arn](#output\_dl\_queue\_arn) | Dead letter queue arn. |
 | <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | Dead letter queue url. |
+| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda function arn. |
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue arn. |
 | <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue url. |
-| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda function ARN. |
-
+<!-- END_TF_DOCS -->
 
 ## About harrison.ai
 

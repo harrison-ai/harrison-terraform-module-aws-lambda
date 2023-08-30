@@ -1,6 +1,7 @@
 locals {
-  sqs_is_event_source = var.sqs_queue_name == null && var.sqs_queue_arn == null ? false : true
-  sqs_use_module      = local.sqs_is_event_source == true && var.sqs_queue_name != null ? true : false
+  sqs_dlqueue_name = var.sqs_queue_name == null ? null : "${var.sqs_queue_name}-dl"
+  use_sqs_as_event_source = var.use_sqs_as_event_source && ( var.sqs_queue_name != null || var.sqs_queue_arn != null )
+  create_sqs_queues = local.use_sqs_as_event_source && var.sqs_queue_name != null
 }
 
 ##  -----  Function  -----  ##
@@ -53,15 +54,15 @@ resource "aws_lambda_function" "this" {
 
 ##  -----  Queues   -----  ##
 resource "aws_lambda_event_source_mapping" "this" {
-  count                              = local.sqs_is_event_source == true ? 1 : 0
-  event_source_arn                   = local.sqs_use_module ? aws_sqs_queue.queue[0].arn : var.sqs_queue_arn
+  count                              = local.use_sqs_as_event_source ? 1 : 0
+  event_source_arn                   = local.create_sqs_queues ? aws_sqs_queue.queue[0].arn : var.sqs_queue_arn
   function_name                      = aws_lambda_function.this.function_name
   batch_size                         = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
 }
 
 resource "aws_sqs_queue" "queue" {
-  count                      = local.sqs_use_module ? 1 : 0
+  count                      = local.create_sqs_queues ? 1 : 0
   name                       = var.sqs_queue_name
   max_message_size           = var.sqs_max_message_size
   message_retention_seconds  = var.sqs_message_retention_seconds
@@ -79,8 +80,8 @@ resource "aws_sqs_queue" "queue" {
 }
 
 resource "aws_sqs_queue" "dlqueue" {
-  count                      = local.sqs_use_module ? 1 : 0
-  name                       = "${var.sqs_queue_name}-dl"
+  count                      = local.create_sqs_queues ? 1 : 0
+  name                       = local.sqs_dlqueue_name
   max_message_size           = var.sqs_max_message_size
   message_retention_seconds  = var.sqs_message_retention_seconds
   receive_wait_time_seconds  = var.sqs_receive_wait_time_seconds
@@ -88,7 +89,7 @@ resource "aws_sqs_queue" "dlqueue" {
   sqs_managed_sse_enabled    = var.sqs_encryption_enabled
 
   tags = {
-    Name = "${var.sqs_queue_name}-dl"
+    Name = local.sqs_dlqueue_name
   }
 }
 
