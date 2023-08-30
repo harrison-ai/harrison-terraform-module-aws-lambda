@@ -53,6 +53,7 @@ No modules.
 | <a name="input_batch_size"></a> [batch\_size](#input\_batch\_size) | The largest number of records that Lambda will retrieve from the queue at the time of invocation. Defaults to 10 for SQS. | `number` | `10` | no |
 | <a name="input_cloudwatch_retention_in_days"></a> [cloudwatch\_retention\_in\_days](#input\_cloudwatch\_retention\_in\_days) | Days to keep Cloudwatch logs before they are deleted. | `number` | `30` | no |
 | <a name="input_command"></a> [command](#input\_command) | Command to run in Lambda. This is equivalent to Docker CMD. | `list(string)` | `null` | no |
+| <a name="input_create_sqs_queues"></a> [create\_sqs\_queues](#input\_create\_sqs\_queues) | Boolean to determine if we create the SQS queues. | `bool` | `true` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description of the Lambda. | `string` | n/a | yes |
 | <a name="input_entry_point"></a> [entry\_point](#input\_entry\_point) | Entrypoint of Lambda. This is equivalent to Docker ENTRYPOINT. | `list(string)` | `null` | no |
 | <a name="input_envvars"></a> [envvars](#input\_envvars) | Map of environment variables for the Lambda function. | `map(string)` | `{}` | no |

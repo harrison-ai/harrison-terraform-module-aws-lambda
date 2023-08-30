@@ -39,9 +39,9 @@ module "lambda_function_withqueue" {
     Project = local.project
   }
 
-  # The default is true
-  # use_sqs_as_event_source = true
-  sqs_queue_name = "${local.project}-withqueue-${local.env_name}-queue"
+  use_sqs_as_event_source = true
+  create_sqs_queues       = true
+  sqs_queue_name          = "${local.project}-withqueue-${local.env_name}-queue"
 }
 
 # Sample Lambda function using the module that does not include SQS queues
@@ -71,8 +71,8 @@ module "lambda_function_noqueue" {
     Project = local.project
   }
 
-  # This can be unset as the module does further detection
-  # use_sqs_as_event_source = false
+  use_sqs_as_event_source = false
+  create_sqs_queues       = false
 }
 
 # Sample Lambda function using the module but providing your own SQS queue
@@ -102,7 +102,9 @@ module "lambda_function_externalqueue" {
     Project = local.project
   }
 
-  sqs_queue_arn = aws_sqs_queue.external.arn
+  use_sqs_as_event_source = true
+  create_sqs_queues       = false
+  sqs_queue_arn           = aws_sqs_queue.external.arn
 }
 
 resource "aws_sqs_queue" "external" {

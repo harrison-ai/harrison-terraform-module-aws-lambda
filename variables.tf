@@ -98,6 +98,12 @@ variable "use_sqs_as_event_source" {
   default     = true
 }
 
+variable "create_sqs_queues" {
+  description = "Boolean to determine if we create the SQS queues."
+  type        = bool
+  default     = true
+}
+
 variable "sqs_queue_arn" {
   description = "ARN of an existing SQS event source queue."
   type        = string

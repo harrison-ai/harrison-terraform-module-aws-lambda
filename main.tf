@@ -1,7 +1,5 @@
 locals {
-  sqs_dlqueue_name        = var.sqs_queue_name == null ? null : "${var.sqs_queue_name}-dl"
-  use_sqs_as_event_source = var.use_sqs_as_event_source && (var.sqs_queue_name != null || var.sqs_queue_arn != null)
-  create_sqs_queues       = local.use_sqs_as_event_source && var.sqs_queue_name != null
+  sqs_dlqueue_name = var.sqs_queue_name == null ? null : "${var.sqs_queue_name}-dl"
 }
 
 ##  -----  Function  -----  ##
@@ -54,15 +52,15 @@ resource "aws_lambda_function" "this" {
 
 ##  -----  Queues   -----  ##
 resource "aws_lambda_event_source_mapping" "this" {
-  count                              = local.use_sqs_as_event_source ? 1 : 0
-  event_source_arn                   = local.create_sqs_queues ? aws_sqs_queue.queue[0].arn : var.sqs_queue_arn
+  count                              = var.use_sqs_as_event_source ? 1 : 0
+  event_source_arn                   = var.create_sqs_queues ? aws_sqs_queue.queue[0].arn : var.sqs_queue_arn
   function_name                      = aws_lambda_function.this.function_name
   batch_size                         = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
 }
 
 resource "aws_sqs_queue" "queue" {
-  count                      = local.create_sqs_queues ? 1 : 0
+  count                      = var.create_sqs_queues ? 1 : 0
   name                       = var.sqs_queue_name
   max_message_size           = var.sqs_max_message_size
   message_retention_seconds  = var.sqs_message_retention_seconds
@@ -80,7 +78,7 @@ resource "aws_sqs_queue" "queue" {
 }
 
 resource "aws_sqs_queue" "dlqueue" {
-  count                      = local.create_sqs_queues ? 1 : 0
+  count                      = var.create_sqs_queues ? 1 : 0
   name                       = local.sqs_dlqueue_name
   max_message_size           = var.sqs_max_message_size
   message_retention_seconds  = var.sqs_message_retention_seconds
