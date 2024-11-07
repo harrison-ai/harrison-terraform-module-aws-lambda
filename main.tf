@@ -58,7 +58,7 @@ resource "aws_lambda_event_source_mapping" "this" {
   function_name                      = aws_lambda_function.this.function_name
   batch_size                         = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
-  function_response_types            = var.function_response_types
+  function_response_types            = try(var.function_response_types, null)
 }
 
 resource "aws_sqs_queue" "queue" {
