@@ -49,6 +49,12 @@ variable "maximum_batching_window_in_seconds" {
   default     = 30
 }
 
+variable "function_response_types" {
+  description = "Set to ReportBatchItemFailures to allow Lambda to return paritial success/failures."
+  type        = string
+  # default     = null
+}
+
 variable "cloudwatch_retention_in_days" {
   description = "Days to keep Cloudwatch logs before they are deleted."
   type        = number
