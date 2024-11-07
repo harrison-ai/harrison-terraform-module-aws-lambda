@@ -66,6 +66,10 @@ tf-shell: .env
 pull:
 	docker compose pull
 
+## docs:			generate terraform module docs
+docs:
+	docker compose run --rm terraform-docs terraform-docs .
+
 ## .env:			creates .env file with the envvar keys populated
 .env:
 	touch .env
