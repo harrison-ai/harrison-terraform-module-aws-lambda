@@ -12,18 +12,21 @@ This module is opinionated, yet flexible enough to be really useful. Here are so
   - KMS Encryption of Environment Variables
   - Layers (by virtue of only supporting Container Image based funcctions)
 
+
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.20.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
 
 ## Modules
 
@@ -56,6 +59,7 @@ No modules.
 | <a name="input_entry_point"></a> [entry\_point](#input\_entry\_point) | Entrypoint of Lambda. This is equivalent to Docker ENTRYPOINT. | `list(string)` | `null` | no |
 | <a name="input_envvars"></a> [envvars](#input\_envvars) | Map of environment variables for the Lambda function. | `map(string)` | `{}` | no |
 | <a name="input_ephemeral_storage_size"></a> [ephemeral\_storage\_size](#input\_ephemeral\_storage\_size) | Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB). | `number` | `512` | no |
+| <a name="input_function_response_types"></a> [function\_response\_types](#input\_function\_response\_types) | Set to ReportBatchItemFailures to allow Lambda to return paritial success/failures. | `list(string)` | `[]` | no |
 | <a name="input_iam_abac_tags"></a> [iam\_abac\_tags](#input\_iam\_abac\_tags) | ABAC tags to pass. See https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html | `map(string)` | `{}` | no |
 | <a name="input_image_uri"></a> [image\_uri](#input\_image\_uri) | Private ECR repository URI. | `string` | n/a | yes |
 | <a name="input_lambda_policy"></a> [lambda\_policy](#input\_lambda\_policy) | Additional aws\_iam\_policy resource to include. | `string` | `null` | no |
@@ -79,10 +83,10 @@ No modules.
 |------|-------------|
 | <a name="output_dl_queue_arn"></a> [dl\_queue\_arn](#output\_dl\_queue\_arn) | Dead letter queue arn. |
 | <a name="output_dl_queue_url"></a> [dl\_queue\_url](#output\_dl\_queue\_url) | Dead letter queue url. |
+| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda function arn. |
 | <a name="output_queue_arn"></a> [queue\_arn](#output\_queue\_arn) | Queue arn. |
 | <a name="output_queue_url"></a> [queue\_url](#output\_queue\_url) | Queue url. |
-| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda function ARN. |
-
+<!-- END_TF_DOCS -->
 
 ## About harrison.ai
 
