@@ -14,10 +14,14 @@ resource "aws_lambda_function" "this" {
     size = var.ephemeral_storage_size
   }
 
-  image_config {
-    command     = var.command
-    entry_point = var.entry_point
+  dynamic "image_config" {
+    for_each = (var.command == null && var.entry_point == null) ? [] : [true]
+    content {
+      command     = var.command
+      entry_point = var.entry_point
+    }
   }
+
   image_uri    = var.image_uri
   memory_size  = var.memory_size
   package_type = "Image"
