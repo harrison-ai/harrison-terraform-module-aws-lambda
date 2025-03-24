@@ -26,7 +26,7 @@ This module is opinionated, yet flexible enough to be really useful. Here are so
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.92.0 |
 
 ## Modules
 
@@ -62,6 +62,7 @@ No modules.
 | <a name="input_function_response_types"></a> [function\_response\_types](#input\_function\_response\_types) | Set to ReportBatchItemFailures to allow Lambda to return paritial success/failures. | `list(string)` | `[]` | no |
 | <a name="input_iam_abac_tags"></a> [iam\_abac\_tags](#input\_iam\_abac\_tags) | ABAC tags to pass. See https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html | `map(string)` | `{}` | no |
 | <a name="input_image_uri"></a> [image\_uri](#input\_image\_uri) | Private ECR repository URI. | `string` | n/a | yes |
+| <a name="input_ipv6_allowed_for_dual_stack"></a> [ipv6\_allowed\_for\_dual\_stack](#input\_ipv6\_allowed\_for\_dual\_stack) | Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets | `bool` | `null` | no |
 | <a name="input_lambda_policy"></a> [lambda\_policy](#input\_lambda\_policy) | Additional aws\_iam\_policy resource to include. | `string` | `null` | no |
 | <a name="input_maximum_batching_window_in_seconds"></a> [maximum\_batching\_window\_in\_seconds](#input\_maximum\_batching\_window\_in\_seconds) | The maximum amount of time to gather records before invoking the function, in seconds (between 0 and 300). Records will continue to accumulate until either maximum\_batching\_window\_in\_seconds expires or batch\_size has been met. | `number` | `30` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Memory size of the lambda in megabytes. | `string` | n/a | yes |
@@ -76,6 +77,8 @@ No modules.
 | <a name="input_sqs_visibility_timeout_seconds"></a> [sqs\_visibility\_timeout\_seconds](#input\_sqs\_visibility\_timeout\_seconds) | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | `number` | `300` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | Lambda timeout in seconds. | `string` | n/a | yes |
 | <a name="input_tracing_mode"></a> [tracing\_mode](#input\_tracing\_mode) | Whether to to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are PassThrough and Active. If PassThrough, Lambda will only trace the request from an upstream service if it contains a tracing header with 'sampled=1'. If Active, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision. | `string` | `null` | no |
+| <a name="input_vpc_security_group_ids"></a> [vpc\_security\_group\_ids](#input\_vpc\_security\_group\_ids) | List of security group ids when Lambda Function should run in the VPC. | `list(string)` | `null` | no |
+| <a name="input_vpc_subnet_ids"></a> [vpc\_subnet\_ids](#input\_vpc\_subnet\_ids) | List of subnet ids when Lambda Function should run in the VPC. Usually private or intra subnets. | `list(string)` | `null` | no |
 
 ## Outputs
 
