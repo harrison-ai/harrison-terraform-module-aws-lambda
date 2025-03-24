@@ -62,7 +62,7 @@ tf-shell: .env
 	docker compose run --rm envvars ensure --tags terraform
 	docker compose run --rm --entrypoint='' terraform /bin/ash
 
-## pull:			docker-compose pull
+## pull:			docker compose pull
 pull:
 	docker compose pull
 

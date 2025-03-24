@@ -25,9 +25,6 @@ jobs:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
           terraform_wrapper: false
 
-      - name: debug
-        run: ls -la
-
       - name: terraform format
         run: make ci-fmt
 
