@@ -56,9 +56,9 @@ variable "function_response_types" {
 }
 
 variable "cloudwatch_retention_in_days" {
-  description = "Days to keep Cloudwatch logs before they are deleted."
+  description = "Days to keep Cloudwatch logs before they are deleted. Defaults to 365 days for SOC 2 compliance."
   type        = number
-  default     = 30
+  default     = 365
 }
 
 variable "envvars" {
