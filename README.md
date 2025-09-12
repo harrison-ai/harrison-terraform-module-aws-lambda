@@ -26,7 +26,7 @@ This module is opinionated, yet flexible enough to be really useful. Here are so
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.92.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
 
 ## Modules
 
@@ -53,7 +53,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Architectures to use. For example x86\_64. | `list(string)` | n/a | yes |
 | <a name="input_batch_size"></a> [batch\_size](#input\_batch\_size) | The largest number of records that Lambda will retrieve from the queue at the time of invocation. Defaults to 10 for SQS. | `number` | `10` | no |
-| <a name="input_cloudwatch_retention_in_days"></a> [cloudwatch\_retention\_in\_days](#input\_cloudwatch\_retention\_in\_days) | Days to keep Cloudwatch logs before they are deleted. | `number` | `30` | no |
+| <a name="input_cloudwatch_retention_in_days"></a> [cloudwatch\_retention\_in\_days](#input\_cloudwatch\_retention\_in\_days) | Days to keep Cloudwatch logs before they are deleted. Defaults to 365 days for SOC 2 compliance. | `number` | `365` | no |
 | <a name="input_command"></a> [command](#input\_command) | Command to run in Lambda. This is equivalent to Docker CMD. | `list(string)` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description of the Lambda. | `string` | n/a | yes |
 | <a name="input_entry_point"></a> [entry\_point](#input\_entry\_point) | Entrypoint of Lambda. This is equivalent to Docker ENTRYPOINT. | `list(string)` | `null` | no |
